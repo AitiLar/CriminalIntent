@@ -1,0 +1,16 @@
+# Игнорировать системные файлы Mac OS
+.DS_Store
+
+# Игнорировать папки Gradle
+.gradle/
+gradle/
+
+# Игнорировать сгенерированные файлы сборки
+app/build/
+build/
+
+# Игнорировать файлы конфигурации Gradle
+gradle.properties
+gradlew
+gradlew.bat
+local.properties
