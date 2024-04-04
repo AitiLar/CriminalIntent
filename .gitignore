@@ -8,6 +8,7 @@ gradle/
 # Игнорировать сгенерированные файлы сборки
 app/build/
 build/
+.idea/
 
 # Игнорировать файлы конфигурации Gradle
 gradle.properties
