@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,6 +65,7 @@ class CrimeListFragment : Fragment() {
         private lateinit var crime: Crime
         val titleTextView: TextView = itemView.findViewById(R.id.crime_title)
         val dateTextView: TextView = itemView.findViewById(R.id.crime_date)
+        private val soledImageView: ImageView = itemView.findViewById(R.id.crime_solved)
 
         init {
             itemView.setOnClickListener(this)
@@ -71,7 +74,12 @@ class CrimeListFragment : Fragment() {
         fun bind(crime: Crime){
             this.crime = crime
             titleTextView.text = this.crime.title
-            dateTextView.text = this.crime.date.toString()
+            dateTextView.text = crimeListViewModel.convertDateToString(this.crime.date)
+            soledImageView.visibility = if (crime.isSolved){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
         }
 
         override fun onClick(v: View?) {
@@ -81,24 +89,23 @@ class CrimeListFragment : Fragment() {
 
     private inner class HardCrimeHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         private lateinit var hardCrime: Crime
-        val hardInfoLayout: LinearLayout = itemView.findViewById(R.id.infoLayout)
         val hardTitleTextView: TextView = itemView.findViewById(R.id.hard_crime_title)
         val hardDateTextView: TextView = itemView.findViewById(R.id.hard_crime_date)
         val btnCallPolice: Button = itemView.findViewById(R.id.btn_call_police)
 
         init{
-            hardInfoLayout.setOnClickListener(this)
+            hardTitleTextView.setOnClickListener(this)
             btnCallPolice.setOnClickListener(this)
         }
 
         fun bind(crime: Crime){
             this.hardCrime = crime
             hardTitleTextView.text = this.hardCrime.title
-            hardDateTextView.text = this.hardCrime.date.toString()
+            hardDateTextView.text = crimeListViewModel.convertDateToString(this.hardCrime.date)
         }
         override fun onClick(v: View?) {
             when (v?.id){
-                R.id.infoLayout -> {
+                R.id.hard_crime_title -> {
                     Toast.makeText(context, "${hardCrime.title} hard pressed!", Toast.LENGTH_SHORT).show()
                 }
                 R.id.btn_call_police -> {

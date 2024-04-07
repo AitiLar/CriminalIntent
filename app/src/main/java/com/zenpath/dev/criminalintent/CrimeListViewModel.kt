@@ -1,6 +1,8 @@
 package com.zenpath.dev.criminalintent
 
 import androidx.lifecycle.ViewModel
+import java.text.DateFormat
+import java.util.Date
 
 class CrimeListViewModel : ViewModel() {
 
@@ -12,9 +14,13 @@ class CrimeListViewModel : ViewModel() {
             crime.title = "Crime #$i"
             crime.isSolved = i % 2 == 0
             crimes += crime
-            if(i % 2 == 0){
+            if(i % 2 != 0){
                 crime.requiresPolice = true
             }
         }
+    }
+
+    fun convertDateToString(date: Date): String {
+        return DateFormat.getDateInstance(DateFormat.FULL).format(date)
     }
 }

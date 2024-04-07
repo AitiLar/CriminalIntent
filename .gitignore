@@ -1,16 +1,18 @@
-# Игнорировать системные файлы Mac OS
+# Ignore Mac OS system files
 .DS_Store
 
-# Игнорировать папки Gradle
+# Ignore Gradle folders
 .gradle/
 gradle/
 
-# Игнорировать сгенерированные файлы сборки
+# Ignore generated build files
 app/build/
 build/
+
+# Ignore conf Android Studio
 .idea/
 
-# Игнорировать файлы конфигурации Gradle
+# Ignore Gradle configuration files
 gradle.properties
 gradlew
 gradlew.bat
