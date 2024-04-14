@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -46,4 +47,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
     implementation ("androidx.recyclerview:recyclerview:1.0.0")
+    implementation ("androidx.room:room-runtime:2.6.1")
+    ksp ("androidx.room:room-compiler:2.6.1")
 }
